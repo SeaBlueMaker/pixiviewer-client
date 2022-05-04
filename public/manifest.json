@@ -1,0 +1,41 @@
+{
+  "manifest_version": 2,
+  "name": "Pixiviewer",
+  "version": "1.0.0",
+  "description": "Pixiv 소설 이용 시 한 번의 클릭으로 전문을 번역하고, 번역된 글을 북마크할 수 있습니다. 또한 특정 문구를 강조하거나 글씨체, 글자 크기 등을 나에게 맞게 변경할 수 있습니다.",
+  "icons": {
+    "16": "images/icon16.png",
+    "48": "images/icon48.png",
+    "128": "images/icon128.png"
+  },
+  "sidebar_action": {
+    "default_page": "index.html",
+    "default_icon": {
+      "16": "images/icon16.png",
+      "48": "images/icon48.png",
+      "128": "images/icon128.png"
+    },
+    "default_title": "Pixiviewer",
+    "use_navigation_bar": true
+  },
+  "background": {
+    "scripts": [ "background.js" ],
+    "persistent": false
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "http://www.pixiv.net/*",
+        "https://www.pixiv.net/*"
+      ],
+      "js": [ "contentScript.js" ],
+      "css": [ "index.css" ],
+      "run_at": "document_start"
+    }
+  ],
+  "permissions": [
+    "<all_urls>",
+    "storage"
+  ],
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
+}
